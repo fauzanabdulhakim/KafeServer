@@ -30,6 +30,7 @@ import com.fauzan.kafeserver.adapter.MyCategoriesAdapter;
 import com.fauzan.kafeserver.common.Common;
 import com.fauzan.kafeserver.common.MySwipeHelper;
 import com.fauzan.kafeserver.model.CategoryModel;
+import com.fauzan.kafeserver.model.EventBus.ToastEvent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -37,6 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.HashMap;
 import java.util.List;
@@ -96,7 +99,7 @@ public class CategoryFragment extends Fragment {
         storageReference = storage.getReference();
 
         dialog = new SpotsDialog.Builder().setContext(getContext()).setCancelable(false).build();
-        dialog.show();
+        // dialog.show(); Remove it to fix loading show when resume fragment
         layoutAnimationController = AnimationUtils.loadLayoutAnimation(getContext(),R.anim.layout_item_from_left);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recycler_menu.setLayoutManager(layoutManager);
@@ -189,7 +192,7 @@ public class CategoryFragment extends Fragment {
                 .addOnFailureListener(e -> Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show())
                 .addOnCompleteListener(task -> {
                     categoryViewModel.loadCategories();
-                    Toast.makeText(getContext(), "Update success", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().postSticky(new ToastEvent(true, false));
                 });
     }
 
