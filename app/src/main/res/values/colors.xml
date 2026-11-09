@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="overlay_color">#55333639</color>
+    <color name="border_color">#AA333639</color>
+    <color name="background_color">#F5F5F5</color>
+    <color name="status_placed">#F57C00</color>
+    <color name="status_shipping">#1976D2</color>
+    <color name="status_shipped">#388E3C</color>
+    <color name="status_cancelled">#D32F2F</color>
+</resources>
